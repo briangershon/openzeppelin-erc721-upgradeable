@@ -1,5 +1,5 @@
 // scripts/deploy.js
-import { ethers, upgrades } from 'hardhat';
+const { ethers, upgrades } = require('hardhat');
 
 async function main() {
     // deploy upgradeable contract
