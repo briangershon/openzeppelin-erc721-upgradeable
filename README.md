@@ -1,18 +1,17 @@
-# openzeppelin-solidity-hardhat-playground
+# openzeppelin-erc721-upgradeable
 
-![Solidity tests](https://github.com/briangershon/openzeppelin-solidity-hardhat-playground/actions/workflows/continuous-integration.yaml/badge.svg)
+![Solidity tests](https://github.com/briangershon/openzeppelin-erc721-upgradeable/actions/workflows/continuous-integration.yaml/badge.svg)
 
-Develop, test and deploy Solidity contracts based on OpenZeppelin. Use Hardhat development environment. Deploy to Polygon.
+Develop, test and deploy an upgradeable NFT contract based on OpenZeppelin ERC721 Solidity framework and Hardhat development environment. Deploy to any EVM blockchain.
 
-Use as a starter template for new Solidity projects.
-
-Initially based on the [OpenZeppelin Learn tutorial](https://docs.openzeppelin.com/learn/).
+Use as a starter template for new projects.
 
 Tested with Node v16.15 (LTS).
 
-Added:
+Includes:
 
 -   additional testing features
+    -   suite of tests
     -   run tests locally (via `npm test`)
     -   use [Chai matchers from Waffle](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html) (instead of OpenZeppelin Test Helpers)
     -   includes Github Action to run tests

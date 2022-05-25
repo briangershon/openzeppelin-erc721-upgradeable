@@ -1,10 +1,18 @@
 // scripts/deploy.js
+import { ethers, upgrades } from 'hardhat';
+
 async function main() {
-    const Box = await ethers.getContractFactory('Box');
-    console.log('Deploying Box...');
-    const box = await Box.deploy();
-    await box.deployed();
-    console.log('Box deployed to:', box.address);
+    // deploy upgradeable contract
+    const [deployer] = await ethers.getSigners();
+    console.log('Deploying contracts with the account:', deployer.address);
+    console.log('Account balance:', (await deployer.getBalance()).toString());
+
+    const Contract = await ethers.getContractFactory('MyNFTCollection');
+    const contract = await upgrades.deployProxy(Contract);
+    await contract.deployed();
+    console.log('Contract deployed to:', contract.address);
+
+    console.log(`OpenZeppelin Proxy deployed to: ${contract.address}\n\n`);
 }
 
 main()

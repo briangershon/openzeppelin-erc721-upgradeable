@@ -1,5 +1,5 @@
 {
-    "name": "openzeppelin-solidity-hardhat-playground",
+    "name": "openzeppelin-erc721-upgradeable",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -19,7 +19,8 @@
     "devDependencies": {
         "@nomiclabs/hardhat-ethers": "^2.0.3",
         "@nomiclabs/hardhat-etherscan": "^3.0.3",
-        "@openzeppelin/contracts": "^4.4.1",
+        "@openzeppelin/contracts-upgradeable": "^4.6.0",
+        "@openzeppelin/hardhat-upgrades": "^1.17.0",
         "chai": "^4.3.4",
         "dotenv": "^16.0.0",
         "ethereum-waffle": "^3.4.0",
