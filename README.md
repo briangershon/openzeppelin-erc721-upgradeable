@@ -22,14 +22,29 @@ Includes:
 
 ## Developing Locally and Running Unit Tests
 
+Install dependencies and run tests to make sure things are working.
+
     npm install
+    npm test
+
+For first-time setup after creating your repo based on this template, you'll want to rename the contract. Follow these steps:
+
+-   Rename `MyNFTCollection.sol` to the contract name of your choice.
+-   Search-and-replace `MyNFTCollection` throughout the code base.
+-   You'll probably want to make some changes to `README.md` to make this your own.
+
+Now, try running the tests again and make sure everything is working.
+
     npm test
 
 ## Deploying
 
-Deploying an upgradeable contract is a bit more complex and 3 contracts are required.
+Deploying an upgradeable contract is a bit more complex and 3 contracts are required on initial deploy.
 
-TODO: More details soon.
+There are two deploy scenarios:
+
+-   First-time deploy of all 3 contracts.
+-   Subsequent upgrades of just your 1 contract.
 
 ### Setup configuration and fund your wallet
 
@@ -38,13 +53,25 @@ TODO: More details soon.
 
 ### Deploy to Testnet
 
-TODO: Needs to be update for Upgradeable contract scenario
+DOC TODO:
+
+-   [ ] Explain how to find the three contracts and what they do!
+-   [ ] Clarify below which contract address to verify, etc.
+
+Scenario 1: First-time deploy of all 3 contracts (Proxy, Admin and your actual contract)
 
 -   deploy via `npx hardhat run --network testnet scripts/deploy.js`
 -   grab the resulting contract address that you just deployed, let's call that `NEW_CONTRACT_ADDRESS_HERE`
 -   optionally, test manually via console -- see [Playing with Contract](#playing-with-contract) below
 -   upload source code so others can verify it on-chain via `npx hardhat verify --network testnet NEW_CONTRACT_ADDRESS_HERE`
 -   view contract (and/or call methods directly) in Polygonscan <https://mumbai.polygonscan.com/>, just look up `NEW_CONTRACT_ADDRESS_HERE`
+-   **IMPORTANT** You'll notice new files in `.openzeppelin` folder. It's important you keep these files and check them into the repository. They are required for upgrading the contract.
+
+Scenario 2: Upgrade your contract
+
+-   add `UPGRADEABLE_PROXY_ADDRESS` in `.env`. This is always the Proxy contract address which doesn't change.
+-   upgrade via `npx hardhat run --network testnet scripts/deploy-upgrade.js`
+-   **IMPORTANT** You'll notice changed files in `.openzeppelin` folder. It's important you keep these files and check them into the repository. They are required for upgrading the contract.
 
 ### Deploy to Mainnet
 

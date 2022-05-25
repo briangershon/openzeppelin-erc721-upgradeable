@@ -1,17 +1,28 @@
-// scripts/deploy.js
 const { ethers, upgrades } = require('hardhat');
 
 async function main() {
+    const upgradeableProxyAddress = process.env.UPGRADEABLE_PROXY_ADDRESS;
+    if (!upgradeableProxyAddress) {
+        console.error(
+            'Missing address for OpenZeppelin upgradeable proxy in .env. Required, please set.'
+        );
+        return;
+    }
+
     // deploy upgradeable contract
     const [deployer] = await ethers.getSigners();
     console.log('Deploying contracts with the account:', deployer.address);
     console.log('Account balance:', (await deployer.getBalance()).toString());
 
     const Contract = await ethers.getContractFactory('MyNFTCollection');
-    const contract = await upgrades.deployProxy(Contract);
-    await contract.deployed();
+    const token = await upgrades.upgradeProxy(
+        upgradeableProxyAddress,
+        Contract
+    );
 
-    console.log(`OpenZeppelin Proxy deployed to: ${contract.address}\n\n`);
+    console.log(
+        `OpenZeppelin Proxy upgraded. Proxy remains at ${token.address}`
+    );
 }
 
 main()

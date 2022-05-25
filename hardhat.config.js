@@ -3,7 +3,6 @@ require('@nomiclabs/hardhat-ethers');
 require('@nomiclabs/hardhat-etherscan');
 require('@openzeppelin/hardhat-upgrades');
 
-
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
