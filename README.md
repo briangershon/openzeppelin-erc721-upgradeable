@@ -30,10 +30,10 @@ Includes:
     -   add your wallet account's private key used for deploying, for example an account created via MetaMask.
     -   to verify contract in a later step, create and add your ETHERSCAN_API_KEY by grabbing your key at <https://polygonscan.com/myapikey>
 -   ensure your wallet account has some MATIC via <https://faucet.polygon.technology/>
--   deploy via `npx hardhat run --network mumbai scripts/deploy.js`
+-   deploy via `npx hardhat run --network testnet scripts/deploy.js`
 -   grab the resulting contract address that you just deployed, let's call that `NEW_CONTRACT_ADDRESS_HERE`
 -   optionally, test manually via console -- see [Playing with Contract](#playing-with-contract) below
--   upload source code so others can verify it on-chain via `npx hardhat verify --network mumbai NEW_CONTRACT_ADDRESS_HERE`
+-   upload source code so others can verify it on-chain via `npx hardhat verify --network testnet NEW_CONTRACT_ADDRESS_HERE`
 -   view contract (and/or call methods directly) in Polygonscan <https://mumbai.polygonscan.com/>, just look up `NEW_CONTRACT_ADDRESS_HERE`
 
 ### Deploy to Polygon Mainnet
@@ -44,7 +44,7 @@ Use same instructions above for Polygon `Mumbai` testnet but use `--network main
 
 ### Playing with Contract
 
-Interact with it via the console (`npx hardhat console --network mumbai`)
+Interact with it via the console (`npx hardhat console --network testnet`)
 
 ```
 await ethers.provider.listAccounts();    // you should see your public wallet account (the match for your private key) listed
