@@ -11,17 +11,21 @@ async function main() {
 
     // deploy upgradeable contract
     const [deployer] = await ethers.getSigners();
-    console.log('Deploying contracts with the account:', deployer.address);
-    console.log('Account balance:', (await deployer.getBalance()).toString());
+    console.log(
+        'Deploy wallet balance:',
+        ethers.utils.formatEther(await deployer.getBalance())
+    );
+
+    console.log('Deployer wallet public key:', deployer.address);
 
     const Contract = await ethers.getContractFactory('MyNFTCollection');
-    const token = await upgrades.upgradeProxy(
+    const proxyContract = await upgrades.upgradeProxy(
         upgradeableProxyAddress,
         Contract
     );
 
     console.log(
-        `OpenZeppelin Proxy upgraded. Proxy remains at ${token.address}`
+        `New contract deployed. OpenZeppelin Proxy remains at ${proxyContract.address}\n\n`
     );
 }
 

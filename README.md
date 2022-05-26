@@ -56,26 +56,32 @@ There are two deploy scenarios:
 
 ### Deploy to Testnet
 
-DOC TODO:
-
--   [ ] Explain how to find the three contracts and what they do!
--   [ ] Clarify below which contract address to verify, etc.
-
 Scenario 1: First-time deploy of all 3 contracts (Proxy, Admin and your actual contract)
 
 -   cd contract
 -   deploy via `npx hardhat run --network testnet scripts/deploy.js`
--   grab the resulting contract address that you just deployed, let's call that `NEW_CONTRACT_ADDRESS_HERE`
--   optionally, test manually via console -- see [Playing with Contract](#playing-with-contract) below
--   upload source code so others can verify it on-chain via `npx hardhat verify --network testnet NEW_CONTRACT_ADDRESS_HERE`
--   view contract (and/or call methods directly) in Polygonscan <https://mumbai.polygonscan.com/>, just look up `NEW_CONTRACT_ADDRESS_HERE`
+-   once deployed, you'll see `Deployer wallet public key`. Head over to Etherscan (or Polygonscan) and view that account. You'll see 3 contracts recently deployed.
+    1.  The first chronologically deployed contract is yours (example: https://mumbai.polygonscan.com/address/0xc858c56f9137aea2508474aa17658de460febb7d#code). Let's call this `CONTRACT_ADDRESS`.
+    2.  The second contract is called "ProxyAdmin" (example: https://mumbai.polygonscan.com/address/0xec34f10619f7c0cf30d92d17993e10316a01c884#code).
+    3.  The third is called "TransparentUpgradeableProxy" (example: https://mumbai.polygonscan.com/address/0xbf1774e5ba0fe942c7498b67ff93c509b723eb67#code) and this is the address that matches the `OpenZeppelin Proxy deployed to` in the output after running the deploy script. Let's call this `PROXY_ADDRESS`.
+-   upload source code so others can verify it on-chain via `npx hardhat verify --network testnet CONTRACT_ADDRESS`. Head back to Etherscan or Polygonscan and view #1 again. You should now see actual source code in the contract.
+-   `PROXY_ADDRESS` is that actual address used to interact with the contract, view on OpenSea, etc.
+    -   you can interact manually via the console -- see [Playing with Contract](#playing-with-contract) below
+    -   you can interact with on Etherscan or Polygonscan
 -   **IMPORTANT** You'll notice new files in `.openzeppelin` folder. It's important you keep these files and check them into the repository. They are required for upgrading the contract.
 
 Scenario 2: Upgrade your contract
 
+If you upgrade contract without making any changes, the system will continue to use currently deployed version.
+
 -   cd contract
--   add `UPGRADEABLE_PROXY_ADDRESS` in `.env`. This is always the Proxy contract address which doesn't change.
+-   update `UPGRADEABLE_PROXY_ADDRESS` environment variables in `.env` and set to the `PROXY_ADDRESS` from above. This is always the Proxy contract address which doesn't change. Only the `CONTACT_ADDRESS` changes when upgrading.
 -   upgrade via `npx hardhat run --network testnet scripts/deploy-upgrade.js`
+-   find the newly deployed contract (`CONTRACT_ADDRESS`) from steps above. You'll find the newest contract recently deployed by the deployer wallet labeled as "Contract Creation".
+-   upload source code so others can verify it on-chain via `npx hardhat verify --network testnet CONTRACT_ADDRESS`. Head back to Etherscan or Polygonscan and view #1 again. You should now see actual source code in the contract.
+-   `PROXY_ADDRESS` is that actual address used to interact with the contract, view on OpenSea, etc.
+    -   you can interact manually via the console -- see [Playing with Contract](#playing-with-contract) below
+    -   you can interact with on Etherscan or Polygonscan
 -   **IMPORTANT** You'll notice changed files in `.openzeppelin` folder. It's important you keep these files and check them into the repository. They are required for upgrading the contract.
 
 ### Deploy to Mainnet
@@ -88,10 +94,15 @@ Use same instructions above for deploying to testnet but use `--network mainnet`
 
 ### Playing with Contract
 
-You can interact with your contract in real-time via the Hardhat console.
+You can interact with the contract directly in two ways:
 
-1. First you connect to your contract
-2. Then you interact with your contract
+1. on Etherscan or Polygonscan
+2. You can interact with your contract in real-time via the Hardhat console.
+
+    1. First you connect to your contract
+    2. Then you interact with your contract
+
+If you want to go the console route:
 
 **First, Connect to your Contract**
 
@@ -107,7 +118,7 @@ _Running console session on mainnet_
 
 **Second, Interact with your Contract**
 
-Now that you've connected to your contract above, let's play with it.
+Now that you've connected to your contract above via `hardhat console`, let's play with it.
 
 ```
 // first let's ensure we have the right wallet
@@ -128,6 +139,10 @@ await contract.mintItem(owner, {value: '1000000000000000'});
 await contract.ownerOf(1);
 ```
 
-### Example deploys
+## Check out your NFT on OpenSea
 
--   On Polygon Mumbai testnet, here is the proxy contract: https://mumbai.polygonscan.com/address/0x2b15892adc54273b57102e4506704d2e75722e29#code and the initially deployed contract: https://mumbai.polygonscan.com/address/0xd5f30d08c186a244af7c54ee5cc0949cbf62c762#code
+Head over to Etherscan or Polygonscan, find your `CONTRACT_ADDRESS`, click "contact" then "write", and run the `mintItem` function to mint a new NFT. Use `0.001` for price (has to be >= mintPrice) and the public wallet address of who will be getting the NFT.
+
+If deployed on Polygon's Mumbai (testnet) you can view by going to https://testnets.opensea.io/assets and filter by MUMBAI chain. You'll see your NFT. Here's an example [query](https://testnets.opensea.io/assets?search[chains][0]=MUMBAI&search[query]=0xc858C56F9137aEA2508474AA17658dE460Febb7d&search[resultModel]=ASSETS).
+
+Which then has a link to the "Unidentified contract - 2l2TWfgZSS" OpenSea collection at https://testnets.opensea.io/collection/unidentified-contract-2l2twfgzss
