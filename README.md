@@ -15,6 +15,7 @@ Includes:
     -   run tests locally (via `npm test`)
     -   use [Chai matchers from Waffle](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html) (instead of OpenZeppelin Test Helpers)
     -   includes Github Action to run tests
+-   monorepo-ready -- all contract code and tools are in `./contract` to make it easy to add UI or other pieces
 -   solhint linter config (and then install plugin for your editor that supports solhint syntax highlighting)
 -   format files with Prettier (`npm run style`)
 -   turn on Solidity optimization (1000 means optimize for more high-frequency usage of contract). [Compiler Options](https://docs.soliditylang.org/en/v0.7.2/using-the-compiler.html#input-description)
@@ -24,6 +25,7 @@ Includes:
 
 Install dependencies and run tests to make sure things are working.
 
+    cd contract
     npm install
     npm test
 
@@ -35,6 +37,7 @@ For first-time setup after creating your repo based on this template, you'll wan
 
 Now, try running the tests again and make sure everything is working.
 
+    cd contract
     npm test
 
 ## Deploying
@@ -60,6 +63,7 @@ DOC TODO:
 
 Scenario 1: First-time deploy of all 3 contracts (Proxy, Admin and your actual contract)
 
+-   cd contract
 -   deploy via `npx hardhat run --network testnet scripts/deploy.js`
 -   grab the resulting contract address that you just deployed, let's call that `NEW_CONTRACT_ADDRESS_HERE`
 -   optionally, test manually via console -- see [Playing with Contract](#playing-with-contract) below
@@ -69,6 +73,7 @@ Scenario 1: First-time deploy of all 3 contracts (Proxy, Admin and your actual c
 
 Scenario 2: Upgrade your contract
 
+-   cd contract
 -   add `UPGRADEABLE_PROXY_ADDRESS` in `.env`. This is always the Proxy contract address which doesn't change.
 -   upgrade via `npx hardhat run --network testnet scripts/deploy-upgrade.js`
 -   **IMPORTANT** You'll notice changed files in `.openzeppelin` folder. It's important you keep these files and check them into the repository. They are required for upgrading the contract.
