@@ -1,14 +1,15 @@
 require('dotenv').config();
 require('@nomiclabs/hardhat-ethers');
 require('@nomiclabs/hardhat-etherscan');
+require('@openzeppelin/hardhat-upgrades');
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 
 // default values are there to avoid failures when running tests
-const POLYGON_MUMBAI_RPC = process.env.POLYGON_MUMBAI_RPC || '1'.repeat(32);
-const POLYGON_MAINNET_RPC = process.env.POLYGON_MAINNET_RPC || '1'.repeat(32);
+const TESTNET_RPC = process.env.TESTNET_RPC || '1'.repeat(32);
+const MAINNET_RPC = process.env.MAINNET_RPC || '1'.repeat(32);
 const PRIVATE_KEY = process.env.PRIVATE_KEY || '1'.repeat(64);
 
 module.exports = {
@@ -22,12 +23,12 @@ module.exports = {
         },
     },
     networks: {
-        mumbai: {
-            url: POLYGON_MUMBAI_RPC,
+        testnet: {
+            url: TESTNET_RPC,
             accounts: [PRIVATE_KEY],
         },
         mainnet: {
-            url: POLYGON_MAINNET_RPC,
+            url: MAINNET_RPC,
             accounts: [PRIVATE_KEY],
         },
     },
