@@ -21,13 +21,15 @@ Includes:
 -   turn on Solidity optimization (1000 means optimize for more high-frequency usage of contract). [Compiler Options](https://docs.soliditylang.org/en/v0.7.2/using-the-compiler.html#input-description)
 -   add hardhat-etherscan for verifying contracts on PolygonScan (or Etherscan), which means uploading the source code so it's available for contract users to view/verify. For more info see [hardhat-etherscan plugin](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html).
 
-## Developing Locally and Running Unit Tests
+## Getting Started
 
 Install dependencies and run tests to make sure things are working.
 
     cd contract
     npm install
     npm test
+
+## Create and Modifying your own Contract
 
 For first-time setup after creating your repo based on this template, you'll want to rename the contract. Follow these steps:
 
@@ -40,6 +42,8 @@ Now, try running the tests again and make sure everything is working.
     cd contract
     npm test
 
+Before making many changes, definitely gain more familiarity with Upgradeable contracts, such as how they work, and considerations when you change them: <https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable> and follow link to details on the Proxy too: <https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies#the-constructor-caveat>.
+
 ## Deploying
 
 Deploying an upgradeable contract is a bit more complex and 3 contracts are required on initial deploy.
@@ -49,7 +53,7 @@ There are two deploy scenarios:
 -   First-time deploy of all 3 contracts.
 -   Subsequent upgrades of just your 1 contract.
 
-### Setup configuration and fund your wallet
+### First setup configuration and fund your wallet
 
 -   copy `.env.sample` to `.env`. Then view and edit `.env` for further instructions on configuring your RPC endpoints, private key and Etherscan API key.
 -   for deploys to testnet, ensure your wallet account has some test currency to deploy. For example, on Polygon you want test MATIC via <https://faucet.polygon.technology/> For local testing, Hardhat already provides test currency for you on the local chain.
