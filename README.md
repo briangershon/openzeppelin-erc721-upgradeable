@@ -6,7 +6,7 @@ Develop, test and deploy an upgradeable NFT contract based on OpenZeppelin ERC72
 
 Use as a starter template for new projects.
 
-Tested with Node v16.15 (LTS).
+Tested with Node v16.15 (LTS). (Hardhat currently require 16.x, not currently working in 18.x)
 
 Includes:
 
@@ -20,6 +20,7 @@ Includes:
 -   format files with Prettier (`npm run style`)
 -   turn on Solidity optimization (1000 means optimize for more high-frequency usage of contract). [Compiler Options](https://docs.soliditylang.org/en/v0.7.2/using-the-compiler.html#input-description)
 -   add hardhat-etherscan for verifying contracts on PolygonScan (or Etherscan), which means uploading the source code so it's available for contract users to view/verify. For more info see [hardhat-etherscan plugin](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html).
+-   in VSCode, optionally run your whole environment in a Docker container (config in `.devcontainer`). Learn more about [VSCode: Remote Development in Containers](https://code.visualstudio.com/docs/remote/containers-tutorial)
 
 ## Getting Started
 
