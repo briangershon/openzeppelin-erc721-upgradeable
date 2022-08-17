@@ -3,12 +3,10 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 
 contract MyNFTCollection is
     ERC721Upgradeable,
-    ReentrancyGuardUpgradeable,
     OwnableUpgradeable
 {
     using CountersUpgradeable for CountersUpgradeable.Counter;
@@ -47,7 +45,6 @@ contract MyNFTCollection is
     function mintItem(address player)
         external
         payable
-        nonReentrant
         returns (uint256)
     {
         require(mintPrice <= msg.value, "Not enough funds sent");
