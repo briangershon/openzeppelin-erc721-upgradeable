@@ -9,7 +9,7 @@ describe('MyNFTCollection', function () {
     let owner;
     let otherUser;
 
-    before(async function () {
+    beforeEach(async function () {
         const Contract = await ethers.getContractFactory('MyNFTCollection');
 
         const [_owner, _otherUser] = await ethers.getSigners();
@@ -105,7 +105,7 @@ describe('MyNFTCollection', function () {
                     })
                 )
                     .to.emit(contract, 'LogTokenMinted')
-                    .withArgs(otherUser.address, 3);
+                    .withArgs(otherUser.address, 1);
             });
         });
     });
