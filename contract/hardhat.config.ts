@@ -1,18 +1,16 @@
-require('dotenv').config();
-require('@nomiclabs/hardhat-ethers');
-require('@nomiclabs/hardhat-etherscan');
-require('@openzeppelin/hardhat-upgrades');
+import { HardhatUserConfig } from 'hardhat/config';
+import '@nomicfoundation/hardhat-toolbox';
+import '@openzeppelin/hardhat-upgrades';
 
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
+import dotenv from 'dotenv';
+dotenv.config();
 
 // default values are there to avoid failures when running tests
 const TESTNET_RPC = process.env.TESTNET_RPC || '1'.repeat(32);
 const MAINNET_RPC = process.env.MAINNET_RPC || '1'.repeat(32);
 const PRIVATE_KEY = process.env.PRIVATE_KEY || '1'.repeat(64);
 
-module.exports = {
+const config: HardhatUserConfig = {
     solidity: {
         version: '0.8.9',
         settings: {
@@ -36,3 +34,5 @@ module.exports = {
         apiKey: process.env.ETHERSCAN_API_KEY ?? '',
     },
 };
+
+export default config;

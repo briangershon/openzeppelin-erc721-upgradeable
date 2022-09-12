@@ -1,18 +1,18 @@
-const { expect, use } = require('chai');
-const { solidity } = require('ethereum-waffle');
-const { upgrades } = require('hardhat');
-
-use(solidity);
+import { expect } from 'chai';
+import { upgrades } from 'hardhat';
+import hre from 'hardhat';
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
+import { Contract } from 'ethers';
 
 describe('MyNFTCollection', function () {
-    let contract;
-    let owner;
-    let otherUser;
+    let contract: Contract;
+    let owner: SignerWithAddress;
+    let otherUser: SignerWithAddress;
 
     beforeEach(async function () {
-        const Contract = await ethers.getContractFactory('MyNFTCollection');
+        const Contract = await hre.ethers.getContractFactory('MyNFTCollection');
 
-        const [_owner, _otherUser] = await ethers.getSigners();
+        const [_owner, _otherUser] = await hre.ethers.getSigners();
         owner = _owner;
         otherUser = _otherUser;
 
@@ -66,20 +66,22 @@ describe('MyNFTCollection', function () {
 
     describe('mint', function () {
         it('should not mint if value is below the minimum mintPrice', async function () {
-            await contract.setMintPrice(ethers.utils.parseEther('10.0'));
+            await contract.setMintPrice(hre.ethers.utils.parseEther('10.0'));
             await expect(
                 contract.mintItem(otherUser.address, {
-                    value: ethers.utils.parseEther('9.0'),
+                    value: hre.ethers.utils.parseEther('9.0'),
                 })
             ).to.be.revertedWith('Not enough funds sent');
         });
 
         describe('upon successful mint (when value is equal to mintPrice)', function () {
             it('should emit a LogTokenMinted', async function () {
-                await contract.setMintPrice(ethers.utils.parseEther('10.0'));
+                await contract.setMintPrice(
+                    hre.ethers.utils.parseEther('10.0')
+                );
                 await expect(
                     contract.mintItem(otherUser.address, {
-                        value: ethers.utils.parseEther('10.0'),
+                        value: hre.ethers.utils.parseEther('10.0'),
                     })
                 )
                     .to.emit(contract, 'LogTokenMinted')
@@ -87,9 +89,11 @@ describe('MyNFTCollection', function () {
             });
 
             it('should be owned by otherUser', async function () {
-                await contract.setMintPrice(ethers.utils.parseEther('10.0'));
+                await contract.setMintPrice(
+                    hre.ethers.utils.parseEther('10.0')
+                );
                 await contract.mintItem(otherUser.address, {
-                    value: ethers.utils.parseEther('10.0'),
+                    value: hre.ethers.utils.parseEther('10.0'),
                 });
 
                 await expect(await contract.ownerOf(1)).to.equal(
@@ -98,10 +102,12 @@ describe('MyNFTCollection', function () {
             });
 
             it('non-owner should also be successful and emit a LogTokenMinted', async function () {
-                await contract.setMintPrice(ethers.utils.parseEther('10.0'));
+                await contract.setMintPrice(
+                    hre.ethers.utils.parseEther('10.0')
+                );
                 await expect(
                     contract.connect(otherUser).mintItem(otherUser.address, {
-                        value: ethers.utils.parseEther('10.0'),
+                        value: hre.ethers.utils.parseEther('10.0'),
                     })
                 )
                     .to.emit(contract, 'LogTokenMinted')

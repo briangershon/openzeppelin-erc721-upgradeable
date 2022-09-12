@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "hardhat test --network hardhat",
+        "test": "hardhat test --network hardhat test/*.ts",
         "deploy": "hardhat run --network localhost scripts/deploy.js",
         "console": "hardhat console --network localhost",
         "style": "prettier --write ."
@@ -17,17 +17,20 @@
     "author": "Brian Gershon",
     "license": "MIT",
     "devDependencies": {
-        "@nomiclabs/hardhat-ethers": "^2.0.3",
-        "@nomiclabs/hardhat-etherscan": "^3.0.3",
+        "@nomicfoundation/hardhat-toolbox": "^1.0.2",
         "@openzeppelin/contracts-upgradeable": "^4.6.0",
         "@openzeppelin/hardhat-upgrades": "^1.17.0",
+        "@types/chai": "^4.3.3",
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.7.16",
         "chai": "^4.3.4",
         "dotenv": "^16.0.0",
-        "ethereum-waffle": "^3.4.0",
         "ethers": "^5.5.2",
         "hardhat": "^2.8.0",
         "prettier": "^2.6.2",
         "prettier-plugin-solidity": "^1.0.0-beta.19",
-        "solhint": "^3.3.6"
+        "solhint": "^3.3.6",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.8.3"
     }
 }
