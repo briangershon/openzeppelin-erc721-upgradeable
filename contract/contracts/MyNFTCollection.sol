@@ -5,10 +5,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 
-contract MyNFTCollection is
-    ERC721Upgradeable,
-    OwnableUpgradeable
-{
+contract MyNFTCollection is ERC721Upgradeable, OwnableUpgradeable {
     using CountersUpgradeable for CountersUpgradeable.Counter;
     CountersUpgradeable.Counter private _tokenIds;
 
@@ -27,10 +24,6 @@ contract MyNFTCollection is
         mintPrice = 0.001 ether;
     }
 
-    function _baseURI() internal view virtual override returns (string memory) {
-        return baseURI;
-    }
-
     function setBaseURI(string memory _newBaseURI) external onlyOwner {
         emit BaseURIUpdated(baseURI, _newBaseURI);
         baseURI = _newBaseURI;
@@ -42,11 +35,7 @@ contract MyNFTCollection is
         mintPrice = _newPrice;
     }
 
-    function mintItem(address player)
-        external
-        payable
-        returns (uint256)
-    {
+    function mintItem(address player) external payable returns (uint256) {
         require(mintPrice <= msg.value, "Not enough funds sent");
 
         _tokenIds.increment();

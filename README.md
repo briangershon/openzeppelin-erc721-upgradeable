@@ -6,7 +6,7 @@ Develop, test and deploy an upgradeable NFT contract based on OpenZeppelin ERC72
 
 Use as a starter template for new projects.
 
-Tested with Node v16.15 (LTS). (Hardhat currently require 16.x, not currently working in 18.x)
+Tested with Node v18 (LTS).
 
 Includes:
 
@@ -15,6 +15,9 @@ Includes:
     -   run tests locally (via `npm test`)
     -   use [Chai matchers from Waffle](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html) (instead of OpenZeppelin Test Helpers)
     -   includes Github Action to run tests
+    -   run gas report
+    -   run code coverage report
+-   generates TypeScript bindings via TypeChain (in `contract/typechain-types`)
 -   monorepo-ready -- all contract code and tools are in `./contract` to make it easy to add UI or other pieces
 -   solhint linter config (and then install plugin for your editor that supports solhint syntax highlighting)
 -   format files with Prettier (`npm run style`)
@@ -29,6 +32,9 @@ Install dependencies and run tests to make sure things are working.
     cd contract
     npm install
     npm test
+
+    npm run test:gas    # to also show gas reporting
+    npm run test:coverage   # to show coverage, details in contract/coverage/index.html
 
 ## Create and Modifying your own Contract
 
