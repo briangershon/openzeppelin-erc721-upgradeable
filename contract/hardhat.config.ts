@@ -5,9 +5,10 @@ import '@openzeppelin/hardhat-upgrades';
 import dotenv from 'dotenv';
 dotenv.config();
 
+// default values are there to avoid failures when running tests in CI
 const TESTNET_RPC = process.env.TESTNET_RPC || '1'.repeat(32);
 const MAINNET_RPC = process.env.MAINNET_RPC || '1'.repeat(32);
-const PRIVATE_KEY = process.env.PRIVATE_KEY || '';
+const PRIVATE_KEY = process.env.PRIVATE_KEY || '1'.repeat(32);
 
 const config: HardhatUserConfig = {
     solidity: {
