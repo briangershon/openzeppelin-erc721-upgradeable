@@ -6,7 +6,7 @@ Develop, test and deploy an upgradeable NFT contract based on OpenZeppelin ERC72
 
 Use as a starter template for new projects.
 
-Tested with Node v16.15 (LTS). (Hardhat currently require 16.x, not currently working in 18.x)
+Tested with Node v18 (LTS).
 
 Includes:
 
@@ -29,6 +29,8 @@ Install dependencies and run tests to make sure things are working.
     cd contract
     npm install
     npm test
+
+    npm run test:gas    # to also show gas reporting
 
 ## Create and Modifying your own Contract
 
