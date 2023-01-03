@@ -15,6 +15,8 @@ Includes:
     -   run tests locally (via `npm test`)
     -   use [Chai matchers from Waffle](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html) (instead of OpenZeppelin Test Helpers)
     -   includes Github Action to run tests
+    -   run gas report
+    -   run code coverage report
 -   monorepo-ready -- all contract code and tools are in `./contract` to make it easy to add UI or other pieces
 -   solhint linter config (and then install plugin for your editor that supports solhint syntax highlighting)
 -   format files with Prettier (`npm run style`)
@@ -31,6 +33,7 @@ Install dependencies and run tests to make sure things are working.
     npm test
 
     npm run test:gas    # to also show gas reporting
+    npm run test:coverage   # to show coverage, details in contract/coverage/index.html
 
 ## Create and Modifying your own Contract
 
