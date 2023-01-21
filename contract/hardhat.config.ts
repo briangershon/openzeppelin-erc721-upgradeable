@@ -1,6 +1,7 @@
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import '@openzeppelin/hardhat-upgrades';
+import 'hardhat-watcher';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -35,6 +36,11 @@ const config: HardhatUserConfig = {
     },
     gasReporter: {
         enabled: process.env.REPORT_GAS ? true : false,
+    },
+    watcher: {
+        compilation: {
+            tasks: ['test'],
+        },
     },
 };
 

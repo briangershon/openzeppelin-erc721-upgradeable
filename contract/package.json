@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "hardhat test --network hardhat test/*.ts",
+        "test": "hardhat watch compilation --network hardhat",
+        "test:ci": "hardhat test --network hardhat test/*.ts",
         "test:gas": "REPORT_GAS=1 hardhat test --network hardhat test/*.ts",
         "test:coverage": "hardhat coverage --network hardhat",
         "deploy": "hardhat run --network localhost scripts/deploy.js",
@@ -28,6 +29,7 @@
         "dotenv": "^16.0.0",
         "ethers": "^5.5.2",
         "hardhat": "^2.8.0",
+        "hardhat-watcher": "^2.5.0",
         "prettier": "^2.6.2",
         "prettier-plugin-solidity": "^1.0.0-beta.19",
         "solhint": "^3.3.6",

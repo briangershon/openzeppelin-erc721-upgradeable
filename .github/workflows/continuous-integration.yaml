@@ -14,5 +14,5 @@ jobs:
             - run: node --version
             - run: npm install
               working-directory: contract
-            - run: npm test
+            - run: npm run test:ci
               working-directory: contract
