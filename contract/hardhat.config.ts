@@ -38,7 +38,7 @@ const config: HardhatUserConfig = {
         enabled: process.env.REPORT_GAS ? true : false,
     },
     watcher: {
-        compilation: {
+        test: {
             tasks: ['test'],
         },
     },

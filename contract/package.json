@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "hardhat watch compilation --network hardhat",
+        "test": "hardhat watch test --network hardhat",
         "test:ci": "hardhat test --network hardhat test/*.ts",
         "test:gas": "REPORT_GAS=1 hardhat test --network hardhat test/*.ts",
         "test:coverage": "hardhat coverage --network hardhat",
