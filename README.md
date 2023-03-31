@@ -12,7 +12,7 @@ Includes:
 
 -   configuration for deploying to any EVM chain
 -   suite of tests
-    -   run tests locally (via `npm test`)
+    -   run tests locally with watcher (via `npm test`)
     -   use [Chai matchers from Waffle](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html) (instead of OpenZeppelin Test Helpers)
     -   includes Github Action to run tests
     -   run gas report
